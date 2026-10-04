@@ -1,0 +1,10 @@
+# Keep shell scripts in Unix format
+*.sh text eol=lf
+
+# Windows PowerShell scripts
+*.ps1 text eol=crlf
+
+# Project source files
+*.py text eol=lf
+*.scss text eol=lf
+*.md text eol=lf

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Terminal Bat</title>
+</head>
+
+<body>
+
+    <h1>Terminal Bat 🦇</h1>
+
+    <p>
+        A small Python terminal animation that turns a CSS pixel-art bat
+        into an animated Unicode Braille sprite.
+    </p>
+
+    <p>
+        The bat can fly across the terminal, return, perch, swarm with friends,
+        or perform a tiny dance.
+    </p>
+
+    <p>
+        The project started as an experiment in converting a CSS
+        <code>box-shadow</code> pixel animation into something that could be
+        rendered directly in a terminal.
+    </p>
+
+
+    <h2>Features</h2>
+
+    <ul>
+        <li>Parses the original SCSS animation frames directly</li>
+        <li>Converts pixel coordinates into Unicode Braille characters</li>
+        <li>Supports ANSI true-color terminal output</li>
+        <li>Clips the sprite correctly while entering and leaving the screen</li>
+        <li>Automatically adapts to the current terminal size</li>
+        <li>Works from PowerShell and Bash / WSL / Linux</li>
+        <li>Includes multiple animation modes</li>
+    </ul>
+
+
+    <h2>Modes</h2>
+
+    <p>Run the default animation:</p>
+
+    <pre><code>bat</code></pre>
+
+    <p>Available modes:</p>
+
+    <pre><code>bat --return
+bat --perch
+bat --swarm
+bat --dance</code></pre>
+
+
+    <h3><code>bat</code></h3>
+
+    <p>
+        The standard animation. The bat flies in from the left and exits
+        through the right side of the terminal.
+    </p>
+
+
+    <h3><code>bat --return</code></h3>
+
+    <p>
+        The bat flies across the terminal, turns around, and flies back.
+    </p>
+
+
+    <h3><code>bat --perch</code></h3>
+
+    <p>
+        The bat flies into the terminal and stays there flapping.
+    </p>
+
+    <p>Press:</p>
+
+    <pre><code>Ctrl+C</code></pre>
+
+    <p>to release it.</p>
+
+
+    <h3><code>bat --swarm</code></h3>
+
+    <p>
+        Sends five smaller bats across the terminal using different heights,
+        starting positions, and animation phases.
+    </p>
+
+
+    <h3><code>bat --dance</code></h3>
+
+    <p>
+        The bat flies to the center of the terminal, performs a small
+        side-to-side dance with a vertical bob, and then flies away.
+    </p>
+
+
+    <hr>
+
+
+    <h2>Requirements</h2>
+
+    <ul>
+        <li>Python 3</li>
+        <li>A terminal with ANSI escape-sequence support</li>
+        <li>Unicode / Braille character support</li>
+    </ul>
+
+    <p>
+        The Python implementation uses only the standard library, so no
+        additional Python packages are required.
+    </p>
+
+
+    <hr>
+
+
+    <h2>Running Directly</h2>
+
+    <p>
+        Clone the repository and enter the project directory.
+    </p>
+
+    <p>Then run:</p>
+
+    <pre><code>python3 bat.py</code></pre>
+
+    <p>Or choose a mode:</p>
+
+    <pre><code>python3 bat.py --dance
+python3 bat.py --return
+python3 bat.py --perch
+python3 bat.py --swarm</code></pre>
+
+    <p>
+        On systems where Python is invoked using <code>python</code> rather
+        than <code>python3</code>, use:
+    </p>
+
+    <pre><code>python bat.py</code></pre>
+
+
+    <hr>
+
+
+    <h2>Shell Setup</h2>
+
+    <p>
+        The repository contains example shell snippets inside:
+    </p>
+
+    <pre><code>shell/
+├── bashrc_snippet.sh
+└── powershell_profile.ps1</code></pre>
+
+    <p>
+        These allow the program to be called simply as:
+    </p>
+
+    <pre><code>bat</code></pre>
+
+    <p>from anywhere in the terminal.</p>
+
+
+    <h3>PowerShell</h3>
+
+    <p>
+        Add the function from:
+    </p>
+
+    <pre><code>shell/powershell_profile.ps1</code></pre>
+
+    <p>
+        to your PowerShell profile.
+    </p>
+
+    <p>
+        You can open the profile with:
+    </p>
+
+    <pre><code>notepad $PROFILE</code></pre>
+
+    <p>
+        or your preferred editor.
+    </p>
+
+    <p>
+        Replace the example path with the actual path to
+        <code>bat.py</code>:
+    </p>
+
+    <pre><code>function bat {
+    param(
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$BatArgs
+    )
+
+    python3 "C:\path\to\bat_animation\bat.py" @BatArgs
+}</code></pre>
+
+    <p>Reload the profile:</p>
+
+    <pre><code>. $PROFILE</code></pre>
+
+    <p>You can now use:</p>
+
+    <pre><code>bat
+bat --dance
+bat --return
+bat --perch
+bat --swarm</code></pre>
+
+
+    <h4>Optional PowerShell Startup Animation</h4>
+
+    <p>
+        To make the bat fly whenever PowerShell starts, add:
+    </p>
+
+    <pre><code>bat</code></pre>
+
+    <p>
+        after the function definition in your profile.
+    </p>
+
+
+    <h3>Bash / Linux / WSL</h3>
+
+    <p>
+        Add the function from:
+    </p>
+
+    <pre><code>shell/bashrc_snippet.sh</code></pre>
+
+    <p>to:</p>
+
+    <pre><code>~/.bashrc</code></pre>
+
+    <p>
+        and replace the example path with the location of
+        <code>bat.py</code>:
+    </p>
+
+    <pre><code>bat() {
+    python3 /path/to/bat_animation/bat.py "$@"
+}</code></pre>
+
+    <p>Reload Bash:</p>
+
+    <pre><code>source ~/.bashrc</code></pre>
+
+    <p>You can then use:</p>
+
+    <pre><code>bat
+bat --dance
+bat --return
+bat --perch
+bat --swarm</code></pre>
+
+    <p>
+        The same function works with Bash on both Linux and WSL.
+    </p>
+
+    <p>
+        For WSL, a project stored on the Windows <code>C:</code> drive may
+        have a path resembling:
+    </p>
+
+    <pre><code>/mnt/c/Users/username/path/to/bat_animation/bat.py</code></pre>
+
+
+    <h4>Optional Bash Startup Animation</h4>
+
+    <p>
+        To run the animation whenever a new Bash shell starts:
+    </p>
+
+    <pre><code>if [[ -z "$BAT_STARTUP_DONE" ]]; then
+    BAT_STARTUP_DONE=1
+    bat
+fi</code></pre>
+
+    <p>
+        The guard prevents the animation from running again when
+        <code>.bashrc</code> is manually reloaded in the same shell.
+    </p>
+
+
+    <hr>
+
+
+    <h2>Project Structure</h2>
+
+    <pre><code>bat_animation/
+├── bat.py
+├── bat.scss
+├── modes.py
+├── renderer.py
+├── scss_parser.py
+│
+├── legacy_files/
+│   ├── bat_simple.py
+│   └── entire_bat.py
+│
+├── shell/
+│   ├── bashrc_snippet.sh
+│   └── powershell_profile.ps1
+│
+└── .gitignore</code></pre>
+
+
+    <h3><code>bat.py</code></h3>
+
+    <p>Main entry point.</p>
+
+    <p>It:</p>
+
+    <ul>
+        <li>Parses command-line arguments</li>
+        <li>Loads the SCSS animation</li>
+        <li>Prepares the rendered frames</li>
+        <li>Selects the requested animation mode</li>
+        <li>Manages terminal setup and cleanup</li>
+    </ul>
+
+
+    <h3><code>scss_parser.py</code></h3>
+
+    <p>
+        Reads <code>bat.scss</code> and extracts the pixel coordinates
+        for each animation frame.
+    </p>
+
+
+    <h3><code>renderer.py</code></h3>
+
+    <p>Handles:</p>
+
+    <ul>
+        <li>Conversion from pixels to Unicode Braille</li>
+        <li>Colors</li>
+        <li>Sprite mirroring</li>
+        <li>Terminal clipping</li>
+        <li>Terminal dimensions</li>
+        <li>Drawing frames</li>
+    </ul>
+
+
+    <h3><code>modes.py</code></h3>
+
+    <p>Contains the animation behaviours:</p>
+
+    <ul>
+        <li>Normal flight</li>
+        <li>Return flight</li>
+        <li>Perch</li>
+        <li>Swarm</li>
+        <li>Dance</li>
+    </ul>
+
+
+    <h3><code>legacy_files/</code></h3>
+
+    <p>
+        Contains earlier versions of the program from before the code
+        was split into separate modules. As well as a simpler version of it before it evolved.
+    </p>
+
+
+    <hr>
+
+
+    <h2>How It Works</h2>
+
+    <p>
+        The original animation represents the bat using many CSS
+        <code>box-shadow</code> coordinates.
+    </p>
+
+    <p>A line such as:</p>
+
+    <pre><code>33px 6px $a,</code></pre>
+
+    <p>
+        represents one colored pixel.
+    </p>
+
+    <p>
+        <code>scss_parser.py</code> extracts these coordinates and groups
+        them by animation frame.
+    </p>
+
+    <p>
+        The renderer then compresses the source pixels into Unicode
+        Braille cells.
+    </p>
+
+    <p>
+        A Braille character can represent a grid of:
+    </p>
+
+    <pre><code>2 × 4 pixels</code></pre>
+
+    <p>
+        which makes it possible to reproduce the pixel-art bat at a
+        practical size inside a terminal.
+    </p>
+
+    <p>
+        The resulting frames are drawn using ANSI cursor positioning
+        and color escape sequences.
+    </p>
+
+
+    <hr>
+
+
+    <h2>Credits</h2>
+
+    <p>
+        The original bat pixel-art animation is based on:
+    </p>
+
+    <p>
+        <strong>Bat Pixel Art Animation on one Div</strong><br>
+        by <strong>Yuxin Guo (@timothyguo)</strong>
+    </p>
+
+    <p>
+        Original CodePen:
+        <a href="https://codepen.io/timothyguo/pen/jbarzP">
+            https://codepen.io/timothyguo/pen/jbarzP
+        </a>
+    </p>
+
+    <p>
+        The Python parser, Braille renderer, terminal animation system,
+        movement modes, and shell integration were developed as part of
+        this project.
+    </p>
+
+    <p>
+        See the repository's license and third-party attribution files
+        for licensing information.
+    </p>
+
+
+    <hr>
+
+
+    <h2>Why?</h2>
+
+    <p>
+        Because it's October, Halloween is almost here, and the terminal needed a bat.
+    </p>
+
+</body>
+
+</html>
