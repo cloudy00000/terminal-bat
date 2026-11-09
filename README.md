@@ -21,27 +21,27 @@ The project started as an experiment in converting a CSS `box-shadow` pixel anim
 Run the default animation:
 
 ```bash
-bat
+mbat
 ```
 
 Available modes:
 
 ```bash
-bat --return
-bat --perch
-bat --swarm
-bat --dance
+mbat --return
+mbat --perch
+mbat --swarm
+mbat --dance
 ```
 
-### `bat`
+### `mbat`
 
 The standard animation. The bat flies in from the left and exits through the right side of the terminal.
 
-### `bat --return`
+### `mbat --return`
 
 The bat flies across the terminal, turns around, and flies back.
 
-### `bat --perch`
+### `mbat --perch`
 
 The bat flies into the terminal and stays there flapping.
 
@@ -53,11 +53,11 @@ Ctrl+C
 
 to release it.
 
-### `bat --swarm`
+### `mbat --swarm`
 
 Sends five smaller bats across the terminal using different heights, starting positions, and animation phases.
 
-### `bat --dance`
+### `mbat --dance`
 
 The bat flies to the center of the terminal, performs a small side-to-side dance with a vertical bob, and then flies away.
 
@@ -113,7 +113,7 @@ shell/
 These allow the program to be called simply as:
 
 ```bash
-bat
+mbat
 ```
 
 from anywhere in the terminal.
@@ -139,7 +139,7 @@ or your preferred editor.
 Replace the example path with the actual path to `bat.py`:
 
 ```powershell
-function bat {
+function mbat {
     param(
         [Parameter(ValueFromRemainingArguments = $true)]
         [string[]]$BatArgs
@@ -155,22 +155,12 @@ Reload the profile:
 . $PROFILE
 ```
 
-You can now use:
-
-```powershell
-bat
-bat --dance
-bat --return
-bat --perch
-bat --swarm
-```
-
 #### Optional PowerShell Startup Animation
 
 To make the bat fly whenever PowerShell starts, add:
 
 ```powershell
-bat
+mbat
 ```
 
 after the function definition in your profile.
@@ -194,7 +184,7 @@ to:
 Replace the example path with the location of `bat.py`:
 
 ```bash
-bat() {
+mbat() {
     python3 /path/to/bat_animation/bat.py "$@"
 }
 ```
@@ -203,16 +193,6 @@ Reload Bash:
 
 ```bash
 source ~/.bashrc
-```
-
-You can then use:
-
-```bash
-bat
-bat --dance
-bat --return
-bat --perch
-bat --swarm
 ```
 
 The same function works with Bash on both Linux and WSL.
@@ -230,7 +210,7 @@ To run the animation whenever a new Bash shell starts:
 ```bash
 if [[ -z "$BAT_STARTUP_DONE" ]]; then
     BAT_STARTUP_DONE=1
-    bat
+    mbat
 fi
 ```
 
